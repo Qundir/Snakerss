@@ -16,21 +16,24 @@ public class FoodRandomizer : MonoBehaviour
     {
         Bounds bounds = this.FoodArea.bounds;
 
-        float x = Random.Range(bounds.min.x, bounds.max.x);
-        float y = Random.Range(bounds.min.y, bounds.max.y);
+        // 0.5 birimlik adýmlarla rastgele bir x ve y konumu seç
+        float x = Mathf.Round(Random.Range(bounds.min.x * 2, bounds.max.x * 2)) / 2;
+        float y = Mathf.Round(Random.Range(bounds.min.y * 2, bounds.max.y * 2)) / 2;
 
-        Vector3 spawnPosition = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
+        Vector3 spawnPosition = new Vector3(x, y, 0.0f);
 
         // Eðer yiyecek nesnesi yýlanýn segmentleriyle çakýþýyorsa, tekrar spawnlamak için yeni bir konum seç
         while (IsOverlappingWithSnake(spawnPosition))
         {
-            x = Random.Range(bounds.min.x, bounds.max.x);
-            y = Random.Range(bounds.min.y, bounds.max.y);
-            spawnPosition = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
+            // 0.5 birimlik adýmlarla rastgele bir x ve y konumu seç
+            x = Mathf.Round(Random.Range(bounds.min.x * 2, bounds.max.x * 2)) / 2;
+            y = Mathf.Round(Random.Range(bounds.min.y * 2, bounds.max.y * 2)) / 2;
+            spawnPosition = new Vector3(x, y, 0.0f);
         }
 
         this.transform.position = spawnPosition;
     }
+
 
     // Yiyecek nesnesinin yýlanýn segmentleriyle çakýþýp çakýþmadýðýný kontrol eden fonksiyon
     private bool IsOverlappingWithSnake(Vector3 position)
