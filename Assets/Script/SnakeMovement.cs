@@ -37,24 +37,8 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            _direction = Vector2.up;
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            _direction = Vector2.down;
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            _direction = Vector2.left;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            _direction = Vector2.right;
-        }
     }
-
+    // Android için kontrolleri buttonlara atamak için oluþturuldu
     public void SnakeGoRight()
     {
         _direction = Vector2.right;
@@ -81,11 +65,13 @@ public class SnakeMovement : MonoBehaviour
         {
             _segments[i].position = _segments[i - 1].position;
         }
-        this.transform.position = new Vector3(
-            Mathf.Round(this.transform.position.x) + _direction.x,
-            Mathf.Round(this.transform.position.y) + _direction.y,
-            0.0f
-        );
+        Vector3 newPosition = transform.position + new Vector3(_direction.x * 0.5f, _direction.y * 0.5f, 0f);
+
+        // Her bileþeni 0.5 birimden tam sayýya yuvarlayarak yýlanýn her adýmda 0.5 birim hareket etmesini saðlar
+        float newX = Mathf.Round(newPosition.x * 2) / 2;
+        float newY = Mathf.Round(newPosition.y * 2) / 2;
+
+        transform.position = new Vector3(newX, newY, 0f);
     }
 
     private void Grow()
