@@ -9,9 +9,9 @@ public class SnakeMovement : MonoBehaviour
     public List<Transform> _segments;
     public Button RestartGame; // StartGame butonuna referans
     public Text scoreText, highScoreText; // Text elementine referans
-
+    public GameObject BigFood;
     private int highScore = 0; // Baþlangýçta en yüksek skor sýfýr olacak
-
+    private FoodRandomizer foodRandomizer;
     public void Start()
     {
         _segments = new List<Transform>();
@@ -19,6 +19,9 @@ public class SnakeMovement : MonoBehaviour
         RestartGame.gameObject.SetActive(false);
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         UpdateHighScoreText();
+        BigFood.SetActive(false);
+        // foodRandomizer deðiþkenini baþlat
+        foodRandomizer = FindObjectOfType<FoodRandomizer>(); // FoodRandomizer scriptini sahnedeki nesneler arasýnda bul
     }
 
     public void GameStarter()
@@ -30,6 +33,7 @@ public class SnakeMovement : MonoBehaviour
     public void GameRestarter()
     {
         RestartGame.gameObject.SetActive(false);
+        Debug.Log("button aktif edildi");
         Time.timeScale = 1;
     }
 
@@ -41,22 +45,38 @@ public class SnakeMovement : MonoBehaviour
     // Android için kontrolleri buttonlara atamak için oluþturuldu
     public void SnakeGoRight()
     {
-        _direction = Vector2.right;
+        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        if (_direction != Vector2.left)
+        {
+            _direction = Vector2.right;
+        }
     }
 
     public void SnakeGoLeft()
     {
-        _direction = Vector2.left;
+        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        if (_direction != Vector2.right)
+        {
+            _direction = Vector2.left;
+        }
     }
 
     public void SnakeGoUp()
     {
-        _direction = Vector2.up;
+        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        if (_direction != Vector2.down)
+        {
+            _direction = Vector2.up;
+        }
     }
 
     public void SnakeGoDown()
     {
-        _direction = Vector2.down;
+        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        if (_direction != Vector2.up)
+        {
+            _direction = Vector2.down;
+        }
     }
 
     private void FixedUpdate()
@@ -91,11 +111,20 @@ public class SnakeMovement : MonoBehaviour
         _segments.Add(this.transform);
         this.transform.position = Vector3.zero;
         RestartGame.gameObject.SetActive(true);
+        foodRandomizer.SpawnCount = 0;
+        _direction = Vector2.zero; //yandýktan sonra yönlerin durmasý için
+        
     }
 
     private void UpdateScoreText()
     {
         scoreText.text = "Score: " + score.ToString(); // Text elementini güncelle
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            UpdateHighScoreText();
+        }
     }
 
     private int score = 0; // Baþlangýçta score deðeri
@@ -107,12 +136,6 @@ public class SnakeMovement : MonoBehaviour
             Grow();
             score++; // Score deðerini arttýr
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdý
-            if (score > highScore)
-            {
-                highScore = score;
-                PlayerPrefs.SetInt("HighScore", highScore);
-                UpdateHighScoreText();
-            }
         }
         else if (other.tag == "Obstacle")
         {
@@ -121,6 +144,17 @@ public class SnakeMovement : MonoBehaviour
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
             Time.timeScale = 0;
 
+        }
+        else if (other.tag == "BigFood")
+        {
+            // BigFood tetiklendiðinde 4 kez Grow fonksiyonunu çaðýr ve skora +4 ekle
+            for (int i = 0; i < 4; i++)
+            {
+                Grow();
+                score++;
+                UpdateScoreText();
+            }
+            BigFood.SetActive(false);//yem yendikten sonra sabit kalmamasý için
         }
     }
 

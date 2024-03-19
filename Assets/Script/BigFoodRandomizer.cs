@@ -2,20 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodRandomizer : MonoBehaviour
+public class BigFoodRandomizer : MonoBehaviour
 {
-    public BoxCollider2D FoodArea;
+    public BoxCollider2D BigFoodArea;
     public SnakeMovement snakeMovement; // Yýlanýn hareketini kontrol eden scriptin referansý
-    public BigFoodRandomizer bigFoodRandomizer;
-    public int SpawnCount = 0;
-    public GameObject BigFood;
-    public void Start()
+    public void BigFoodSpawner()
     {
-        FoodSpawner();
-    }
-    public void FoodSpawner()
-    {
-        Bounds bounds = this.FoodArea.bounds;
+        Bounds bounds = this.BigFoodArea.bounds;
 
         // 0.5 birimlik adýmlarla rastgele bir x ve y konumu seç
         float x = Mathf.Round(Random.Range(bounds.min.x * 2, bounds.max.x * 2)) / 2;
@@ -42,26 +35,5 @@ public class FoodRandomizer : MonoBehaviour
             }
         }
         return false;
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            // Yiyecek nesnesi spawn edildiðinde sayaç arttýrýlýr
-            SpawnCount++;
-
-            // Her 10 spawn iþleminden sonra BigFoodSpawner fonksiyonunu tetikle
-            if (SpawnCount % 10 == 0)
-            {
-                BigFood.SetActive(true);
-                bigFoodRandomizer.BigFoodSpawner();
-                SpawnCount = 0;
-                FoodSpawner();
-            }
-            else
-            {
-                FoodSpawner();
-            }
-        }
     }
 }
