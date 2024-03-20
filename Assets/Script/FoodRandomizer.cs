@@ -36,7 +36,7 @@ public class FoodRandomizer : MonoBehaviour
     {
         foreach (Transform segment in snakeMovement._segments)
         {
-            if (Vector3.Distance(position, segment.position) < 0.5f) // Uygun bir mesafe seçebilirsiniz
+            if (Vector3.Distance(position, segment.position) < 1.0f) // Uygun bir mesafe seçebilirsiniz
             {
                 return true;
             }

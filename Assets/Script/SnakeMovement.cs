@@ -12,6 +12,7 @@ public class SnakeMovement : MonoBehaviour
     public GameObject BigFood;
     private int highScore = 0; // Baþlangýçta en yüksek skor sýfýr olacak
     private FoodRandomizer foodRandomizer;
+    public SoundEffect soundEffect; 
     public void Start()
     {
         _segments = new List<Transform>();
@@ -111,7 +112,9 @@ public class SnakeMovement : MonoBehaviour
         _segments.Add(this.transform);
         this.transform.position = Vector3.zero;
         RestartGame.gameObject.SetActive(true);
+        BigFood.SetActive(false);
         foodRandomizer.SpawnCount = 0;
+        foodRandomizer.FoodSpawner();
         _direction = Vector2.zero; //yandýktan sonra yönlerin durmasý için
         
     }
@@ -133,12 +136,14 @@ public class SnakeMovement : MonoBehaviour
     {
         if (other.tag == "Food")
         {
+            soundEffect.PlayFoodEatSound();
             Grow();
             score++; // Score deðerini arttýr
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdý
         }
         else if (other.tag == "Obstacle")
         {
+            soundEffect.PlayWallCrashSound();
             ResetState();
             score = 0; // Score deðerini sýfýrla
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
@@ -154,6 +159,7 @@ public class SnakeMovement : MonoBehaviour
                 score++;
                 UpdateScoreText();
             }
+            soundEffect.PlayBigFoodEatSound();
             BigFood.SetActive(false);//yem yendikten sonra sabit kalmamasý için
         }
     }
