@@ -333,8 +333,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SnakeMovement, Assembly-CSharp
+      - m_Target: {fileID: 1462760112}
+        m_TargetAssemblyTypeName: HardSnakeMovement, Assembly-CSharp
         m_MethodName: SnakeGoDown
         m_Mode: 1
         m_Arguments:
@@ -542,8 +542,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SnakeMovement, Assembly-CSharp
+      - m_Target: {fileID: 1462760112}
+        m_TargetAssemblyTypeName: HardSnakeMovement, Assembly-CSharp
         m_MethodName: SnakeGoRight
         m_Mode: 1
         m_Arguments:
@@ -2731,8 +2731,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SnakeMovement, Assembly-CSharp
+      - m_Target: {fileID: 1462760112}
+        m_TargetAssemblyTypeName: HardSnakeMovement, Assembly-CSharp
         m_MethodName: SnakeGoUp
         m_Mode: 1
         m_Arguments:
@@ -3259,8 +3259,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SnakeMovement, Assembly-CSharp
+      - m_Target: {fileID: 1462760112}
+        m_TargetAssemblyTypeName: HardSnakeMovement, Assembly-CSharp
         m_MethodName: SnakeGoLeft
         m_Mode: 1
         m_Arguments:
