@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DefaultClassicGameScene.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
+    path: Assets/Scenes/HardClassicGameScene.unity
+    guid: a955282bbe83e4542b9295cf1cd05777
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: cc364b6b438cc994eaa95c962cb79c5a, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: f03906391ac94204284088e0ad1c13b5, type: 2}

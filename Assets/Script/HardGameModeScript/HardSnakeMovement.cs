@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // UI elementlerine eriþmek için gerekli kütüphane
 
-public class SnakeMovement : MonoBehaviour
+public class HardSnakeMovement : MonoBehaviour
 {
     private float initialTimeScale; // Baþlangýçta kaydedilecek zaman ölçeði deðeri
     private Vector2 _direction = Vector2.zero;
@@ -14,6 +14,7 @@ public class SnakeMovement : MonoBehaviour
     private int highScore = 0; // Baþlangýçta en yüksek skor sýfýr olacak
     private FoodRandomizer foodRandomizer;
     public SoundEffect soundEffect;
+    public HardGameModeScript hardGameModeScript;
     public void Start()
     {
         _segments = new List<Transform>();
@@ -37,6 +38,7 @@ public class SnakeMovement : MonoBehaviour
     {
         RestartGame.gameObject.SetActive(false);
         Time.timeScale = initialTimeScale; // Baþlangýç hýzýna geri dön
+        hardGameModeScript.previousScore = 0;
     }
 
     public Transform segmentPrefab;
@@ -117,7 +119,7 @@ public class SnakeMovement : MonoBehaviour
         foodRandomizer.SpawnCount = 0;
         foodRandomizer.FoodSpawner();
         _direction = Vector2.zero; //yandýktan sonra head objesinin sabit kalmasý için
-        
+
     }
 
     private void UpdateScoreText()

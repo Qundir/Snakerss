@@ -13,4 +13,8 @@ public class MenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void LoadHardClassicModScene()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
