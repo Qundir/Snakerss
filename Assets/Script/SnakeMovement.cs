@@ -145,6 +145,7 @@ public class SnakeMovement : MonoBehaviour
         else if (other.tag == "Obstacle")
         {
             soundEffect.PlayWallCrashSound();
+            Vibration.Vibrate(100);
             ResetState();
             score = 0; // Score deðerini sýfýrla
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr

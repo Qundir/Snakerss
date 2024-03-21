@@ -12,7 +12,7 @@ public class HardSnakeMovement : MonoBehaviour
     public Text scoreText, highScoreText; // Text elementine referans
     public GameObject BigFood;
     private int highScore = 0; // Baþlangýçta en yüksek skor sýfýr olacak
-    private FoodRandomizer foodRandomizer;
+    private HardFoodRandomizer hardFoodRandomizer;
     public SoundEffect soundEffect;
     public HardGameModeScript hardGameModeScript;
     public void Start()
@@ -24,7 +24,7 @@ public class HardSnakeMovement : MonoBehaviour
         UpdateHighScoreText();
         BigFood.SetActive(false);
         // foodRandomizer deðiþkenini baþlat
-        foodRandomizer = FindObjectOfType<FoodRandomizer>(); // FoodRandomizer scriptini sahnedeki nesneler arasýnda bul
+        hardFoodRandomizer = FindObjectOfType<HardFoodRandomizer>(); // FoodRandomizer scriptini sahnedeki nesneler arasýnda bul
         initialTimeScale = Time.timeScale; // Baþlangýç zaman ölçeði deðerini kaydet
     }
 
@@ -116,8 +116,8 @@ public class HardSnakeMovement : MonoBehaviour
         this.transform.position = Vector3.zero;
         RestartGame.gameObject.SetActive(true);
         BigFood.SetActive(false);
-        foodRandomizer.SpawnCount = 0;
-        foodRandomizer.FoodSpawner();
+        hardFoodRandomizer.SpawnCount = 0;
+        hardFoodRandomizer.FoodSpawner();
         _direction = Vector2.zero; //yandýktan sonra head objesinin sabit kalmasý için
 
     }
@@ -147,10 +147,11 @@ public class HardSnakeMovement : MonoBehaviour
         else if (other.tag == "Obstacle")
         {
             soundEffect.PlayWallCrashSound();
+            Vibration.Vibrate(100);
             ResetState();
             score = 0; // Score deðerini sýfýrla
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
-            Time.timeScale = 0;
+            Time.timeScale = 0f;
 
         }
         else if (other.tag == "BigFood")

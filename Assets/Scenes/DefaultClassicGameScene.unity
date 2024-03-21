@@ -668,6 +668,50 @@ MonoBehaviour:
   bigFoodRandomizer: {fileID: 2000303594}
   SpawnCount: 0
   BigFood: {fileID: 2000303593}
+--- !u!1 &389174489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 389174491}
+  - component: {fileID: 389174490}
+  m_Layer: 0
+  m_Name: TimeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &389174490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389174489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8adefc400662644ba55bfcd43998d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &389174491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389174489}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 120.249374, y: 1079.3726, z: -9.264229}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &436982352
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -108.7}
+  m_AnchoredPosition: {x: 30, y: -108.69995}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &436982355
@@ -1543,7 +1587,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -26.999939}
+  m_AnchoredPosition: {x: 30, y: -27}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &980773829
@@ -2252,6 +2296,7 @@ MonoBehaviour:
   BigFood: {fileID: 2000303593}
   soundEffect: {fileID: 1609755937}
   segmentPrefab: {fileID: 1031993325677115825, guid: dd1f40e575b949340af452370185c852, type: 3}
+  score: 0
 --- !u!61 &1533951881
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3279,3 +3324,4 @@ SceneRoots:
   - {fileID: 1765846742}
   - {fileID: 1609755938}
   - {fileID: 1474750012}
+  - {fileID: 389174491}
