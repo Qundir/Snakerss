@@ -13,7 +13,6 @@ public class HardSnakeMovement : MonoBehaviour
     public GameObject BigFood;
     private int highScore = 0; // Baþlangýçta en yüksek skor sýfýr olacak
     private HardFoodRandomizer hardFoodRandomizer;
-    public SoundEffect soundEffect;
     public HardGameModeScript hardGameModeScript;
     public void Start()
     {
@@ -139,14 +138,12 @@ public class HardSnakeMovement : MonoBehaviour
     {
         if (other.tag == "Food")
         {
-            soundEffect.PlayFoodEatSound();
             Grow();
             score++; // Score deðerini arttýr
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdý
         }
         else if (other.tag == "Obstacle")
         {
-            soundEffect.PlayWallCrashSound();
             Vibration.Vibrate(100);
             ResetState();
             score = 0; // Score deðerini sýfýrla
@@ -163,7 +160,6 @@ public class HardSnakeMovement : MonoBehaviour
                 score++;
                 UpdateScoreText();
             }
-            soundEffect.PlayBigFoodEatSound();
             BigFood.SetActive(false);//yem yendikten sonra sabit kalmamasý için
         }
     }

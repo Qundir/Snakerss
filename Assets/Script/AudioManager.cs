@@ -1,46 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; // SceneManager'ý ekleyin
-
+using System;
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
-
-    void Awake()
+    public Sound[] musicSounds, sfxSounds;
+    public AudioSource musicSource, sfxSource;
+    public static AudioManager Instance;
+    private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Yöneticiyi sahne deðiþikliklerinden koru
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Birden fazla kopyayý engelle
+            Destroy(gameObject);
         }
     }
-
-    // Tüm sesleri durdurma fonksiyonu
-    public void StopAllSounds()
+    public void PlayMusic(string name)
     {
-        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
-        foreach (AudioSource audioSource in allAudioSources)
+        Sound s = Array.Find(musicSounds, x => x.name == name);
+        if (s == null)
         {
-            audioSource.Stop();
+            Debug.Log("Sound not found");
+        }
+        else
+        {
+            musicSource.clip = s.clip;
+            musicSource.Play();
         }
     }
-
-    private void OnEnable()
+    public void PlaySFX(string name)
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
+        if (s == null)
+        {
+            Debug.Log("Sound not found");
+        }
+        else
+        {
+            sfxSource.PlayOneShot(s.clip);
+        }
     }
-
-    private void OnDisable()
+    private void Start()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        PlayMusic("GameMusic");
     }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void ToggleMusic()
     {
-        // Sahne yüklendiðinde devam eden sesleri durdur
-        StopAllSounds();
+        musicSource.mute = !musicSource.mute;
+    }
+    public void ToggleSFX()
+    {
+        sfxSource.mute = !sfxSource.mute;
+    }
+    public void MusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
+    public void SFXVolume(float volume)
+    {
+        sfxSource.volume = volume;
     }
 }

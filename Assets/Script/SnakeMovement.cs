@@ -13,7 +13,6 @@ public class SnakeMovement : MonoBehaviour
     public GameObject BigFood;
     private int highScore = 0; // Baþlangýçta en yüksek skor sýfýr olacak
     private FoodRandomizer foodRandomizer;
-    public SoundEffect soundEffect;
     public void Start()
     {
         _segments = new List<Transform>();
@@ -21,6 +20,7 @@ public class SnakeMovement : MonoBehaviour
         RestartGame.gameObject.SetActive(false);
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         UpdateHighScoreText();
+        AudioManager.Instance.PlaySFX("GameStartSound");
         BigFood.SetActive(false);
         // foodRandomizer deðiþkenini baþlat
         foodRandomizer = FindObjectOfType<FoodRandomizer>(); // FoodRandomizer scriptini sahnedeki nesneler arasýnda bul
@@ -137,14 +137,14 @@ public class SnakeMovement : MonoBehaviour
     {
         if (other.tag == "Food")
         {
-            soundEffect.PlayFoodEatSound();
+            AudioManager.Instance.PlaySFX("FoodEatSound");
             Grow();
             score++; // Score deðerini arttýr
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdý
         }
         else if (other.tag == "Obstacle")
         {
-            soundEffect.PlayWallCrashSound();
+            AudioManager.Instance.PlaySFX("WallCrushSound");
             Vibration.Vibrate(100);
             ResetState();
             score = 0; // Score deðerini sýfýrla
@@ -154,6 +154,7 @@ public class SnakeMovement : MonoBehaviour
         }
         else if (other.tag == "BigFood")
         {
+            AudioManager.Instance.PlaySFX("BigFoodEatSound");
             // BigFood tetiklendiðinde 4 kez Grow fonksiyonunu çaðýr ve skora +4 ekle
             for (int i = 0; i < 4; i++)
             {
@@ -161,7 +162,6 @@ public class SnakeMovement : MonoBehaviour
                 score++;
                 UpdateScoreText();
             }
-            soundEffect.PlayBigFoodEatSound();
             BigFood.SetActive(false);//yem yendikten sonra sabit kalmamasý için
         }
     }

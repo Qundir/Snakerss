@@ -31,8 +31,4 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene(4);
     }
     // Menüdeki düðmeye baðlý týklama iþlevi
-    public void OnStopAllSoundsButtonClick()
-    {
-        AudioManager.instance.StopAllSounds();
-    }
 }
