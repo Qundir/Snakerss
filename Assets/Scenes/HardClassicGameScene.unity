@@ -2676,7 +2676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46f2c28948ae394e9b0ed0d10d831b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hardSnakeMovement: {fileID: 0}
+  hardSnakeMovement: {fileID: 1462760112}
   previousScore: 0
 --- !u!4 &1538155011
 Transform:

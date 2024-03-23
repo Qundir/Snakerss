@@ -20,4 +20,19 @@ public class MenuScript : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(2);
     }
+    public void LoadMirrorModScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(3);
+    }
+    public void LoadHardMirrorModScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(4);
+    }
+    // Menüdeki düðmeye baðlý týklama iþlevi
+    public void OnStopAllSoundsButtonClick()
+    {
+        AudioManager.instance.StopAllSounds();
+    }
 }
