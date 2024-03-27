@@ -19,6 +19,7 @@ public class HardSnakeMovement : MonoBehaviour
     private List<Vector3> checkpoints = new List<Vector3>(); // Oyuncunun kayýt noktalarýný tutmak için bir liste
     public GameObject revivePanel;
     float ContinueSpeed;
+    public int initialSize;
     public void Start()
     {
         _segments = new List<Transform>();
@@ -119,23 +120,21 @@ public class HardSnakeMovement : MonoBehaviour
     }
     public void ContinueFromLastCheckpoint()
     {
-        // En son kaydedilen konumu kontrol edin
-        if (checkpoints.Count > 0)
+        initialSize = _segments.Count;
+        for (int i = 1; i < _segments.Count; i++)
         {
-            // Oyuncunun konumunu en son kaydedilen noktaya ayarlayýn
-            Vector3 lastCheckpointPosition = checkpoints[checkpoints.Count - 1];
-            transform.position = lastCheckpointPosition;
-
-            // Tüm segmentlerin pozisyonunu head'in pozisyonuna eþitleyin
-            for (int i = 0; i < _segments.Count; i++)
-            {
-                _segments[i].position = lastCheckpointPosition;
-            }
+            Destroy(_segments[i].gameObject);
         }
-        // Zaman ölçeðini geri yükleyin
-        Time.timeScale = initialTimeScale;
-
+        _segments.Clear();
+        _segments.Add(this.transform);
+        Time.timeScale = ContinueSpeed;
+        for (int i = 1; i < this.initialSize; i++)
+        {
+            _segments.Add(Instantiate(this.segmentPrefab));
+        }
+        this.transform.position = Vector3.zero;
         revivePanel.SetActive(false);
+
     }
 
     private void UpdateScoreText()

@@ -16,7 +16,7 @@ public class SnakeMovement : MonoBehaviour
     private int highScore = 0;
     private FoodRandomizer foodRandomizer;
     public GameObject revivePanel;
-    public int initialSize;
+    public int initialSize ;
     public void Start()
     {
         _segments = new List<Transform>();
@@ -114,22 +114,19 @@ public class SnakeMovement : MonoBehaviour
     }
     public void ContinueFromLastCheckpoint()
     {
-
-        Time.timeScale = initialTimeScale; // Baþlangýç hýzýna geri dön
-       // initialSize = _segments.Count;
+        initialSize = _segments.Count;
         for (int i = 1; i < _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);
         }
-
+        Time.timeScale = initialTimeScale; // Baþlangýç hýzýna geri dön
         _segments.Clear();
         _segments.Add(this.transform);
         for (int i = 1; i < this.initialSize; i++)
         {
             _segments.Add(Instantiate(this.segmentPrefab));
         }
-        this.transform.position = Vector3.zero;
-        this.transform.position = Vector2.zero;
+        this.transform.position = new Vector3(0f, 0f, 0f);
         revivePanel.SetActive(false);
 
     }

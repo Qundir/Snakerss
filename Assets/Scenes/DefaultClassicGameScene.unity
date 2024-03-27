@@ -3160,7 +3160,7 @@ MonoBehaviour:
   BigFood: {fileID: 2000303593}
   score: 0
   revivePanel: {fileID: 780922761}
-  initialSize: 5
+  initialSize: 15
 --- !u!61 &1533951881
 BoxCollider2D:
   m_ObjectHideFlags: 0
