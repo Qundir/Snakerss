@@ -8,18 +8,23 @@ public class HardSnakeMovement : MonoBehaviour
     private float initialTimeScale; // Baþlangýçta kaydedilecek zaman ölçeði deðeri
     private Vector2 _direction = Vector2.zero;
     public List<Transform> _segments;
+    public Transform segmentPrefab;
     public Button RestartGame; // StartGame butonuna referans
     public Text scoreText, highScoreText; // Text elementine referans
     public GameObject BigFood;
+    public int score = 0; // Baþlangýçta score deðeri
     private int highScore = 0; // Baþlangýçta en yüksek skor sýfýr olacak
     private HardFoodRandomizer hardFoodRandomizer;
     public HardGameModeScript hardGameModeScript;
+    private List<Vector3> checkpoints = new List<Vector3>(); // Oyuncunun kayýt noktalarýný tutmak için bir liste
+    public GameObject revivePanel;
+    float ContinueSpeed;
     public void Start()
     {
         _segments = new List<Transform>();
         _segments.Add(this.transform);
-        RestartGame.gameObject.SetActive(false);
         highScore = PlayerPrefs.GetInt("HighScore", 0);
+        AudioManager.Instance.PlaySFX("GameStartSound");
         UpdateHighScoreText();
         BigFood.SetActive(false);
         // foodRandomizer deðiþkenini baþlat
@@ -32,20 +37,6 @@ public class HardSnakeMovement : MonoBehaviour
         _segments = new List<Transform>();
         _segments.Add(this.transform);
     }
-
-    public void GameRestarter()
-    {
-        RestartGame.gameObject.SetActive(false);
-        Time.timeScale = initialTimeScale; // Baþlangýç hýzýna geri dön
-        hardGameModeScript.previousScore = 0;
-    }
-
-    public Transform segmentPrefab;
-
-    private void Update()
-    {
-    }
-    // Android için kontrolleri buttonlara atamak için oluþturuldu
     public void SnakeGoRight()
     {
         // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
@@ -102,6 +93,8 @@ public class HardSnakeMovement : MonoBehaviour
         Transform segment = Instantiate(this.segmentPrefab);
         segment.position = _segments[_segments.Count - 1].position;
         _segments.Add(segment);
+        checkpoints.Add(segment.position);
+        ContinueSpeed = Time.timeScale;
     }
 
     public void ResetState()
@@ -113,12 +106,36 @@ public class HardSnakeMovement : MonoBehaviour
         _segments.Clear();
         _segments.Add(this.transform);
         this.transform.position = Vector3.zero;
-        RestartGame.gameObject.SetActive(true);
         BigFood.SetActive(false);
         hardFoodRandomizer.SpawnCount = 0;
         hardFoodRandomizer.FoodSpawner();
         _direction = Vector2.zero; //yandýktan sonra head objesinin sabit kalmasý için
+        revivePanel.SetActive(false);
+        checkpoints.Clear();
+        score = 0;
+        UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
+        Time.timeScale = 1f;
 
+    }
+    public void ContinueFromLastCheckpoint()
+    {
+        // En son kaydedilen konumu kontrol edin
+        if (checkpoints.Count > 0)
+        {
+            // Oyuncunun konumunu en son kaydedilen noktaya ayarlayýn
+            Vector3 lastCheckpointPosition = checkpoints[checkpoints.Count - 1];
+            transform.position = lastCheckpointPosition;
+
+            // Tüm segmentlerin pozisyonunu head'in pozisyonuna eþitleyin
+            for (int i = 0; i < _segments.Count; i++)
+            {
+                _segments[i].position = lastCheckpointPosition;
+            }
+        }
+        // Zaman ölçeðini geri yükleyin
+        Time.timeScale = initialTimeScale;
+
+        revivePanel.SetActive(false);
     }
 
     private void UpdateScoreText()
@@ -132,27 +149,27 @@ public class HardSnakeMovement : MonoBehaviour
         }
     }
 
-    public int score = 0; // Baþlangýçta score deðeri
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Food")
         {
+            AudioManager.Instance.PlaySFX("FoodEatSound");
             Grow();
             score++; // Score deðerini arttýr
             UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdý
         }
         else if (other.tag == "Obstacle")
         {
+            AudioManager.Instance.PlaySFX("WallCrushSound");
             Vibration.Vibrate(100);
-            ResetState();
-            score = 0; // Score deðerini sýfýrla
-            UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
-            Time.timeScale = 0f;
+            //UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
+            revivePanel.SetActive(true);
+            Time.timeScale = 0;
 
         }
         else if (other.tag == "BigFood")
         {
+            AudioManager.Instance.PlaySFX("BigFoodEatSound");
             // BigFood tetiklendiðinde 4 kez Grow fonksiyonunu çaðýr ve skora +4 ekle
             for (int i = 0; i < 4; i++)
             {

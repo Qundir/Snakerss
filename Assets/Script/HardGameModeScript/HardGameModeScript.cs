@@ -22,7 +22,7 @@ public class HardGameModeScript : MonoBehaviour
             if (speedIncreaseCount <= 5)
             {
                 // Oyun hýzýný artýran fonksiyonu çaðýr
-                IncreaseGameSpeed(0.2f); // %10 artýþ
+                IncreaseGameSpeed(0.1f); // %10 artýþ
             }
 
             // Önceki skoru güncelle
