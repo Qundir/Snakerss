@@ -23,6 +23,7 @@ public class UIController : MonoBehaviour
             _sfxSlider.value = sfxVolume;
             AudioManager.Instance.SFXVolume(sfxVolume);
         }
+        Debug.Log("uý controler çalýþtý");
     }
 
     public void ToggleMusic()
