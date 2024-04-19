@@ -327,6 +327,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218737042}
   m_CullTransparentMesh: 1
+--- !u!1 &333550467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333550469}
+  - component: {fileID: 333550468}
+  m_Layer: 0
+  m_Name: Ads Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &333550468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333550467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890f447f4a88f3a4a83e6d0047fedffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &333550469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333550467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377817460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,7 +1566,6 @@ GameObject:
   - component: {fileID: 701780292}
   - component: {fileID: 701780295}
   - component: {fileID: 701780294}
-  - component: {fileID: 701780293}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -1553,20 +1596,6 @@ RectTransform:
   m_AnchoredPosition: {x: 6.999954, y: -48.000175}
   m_SizeDelta: {x: 800, y: 1734}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &701780293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701780291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8f0587bbb50e848a0205d03bf87083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _musicSlider: {fileID: 893773630}
-  _sfxSlider: {fileID: 1463015763}
 --- !u!114 &701780294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2080,7 +2109,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 701780293}
+      - m_Target: {fileID: 1078187860}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ToggleSFX
         m_Mode: 1
@@ -2340,11 +2369,11 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 701780293}
+      - m_Target: {fileID: 1078187860}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: MusicVolume
         m_Mode: 1
@@ -2599,6 +2628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078187859}
   - component: {fileID: 1078187858}
+  - component: {fileID: 1078187860}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -2649,6 +2679,20 @@ Transform:
   - {fileID: 1609123106}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1078187860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078187857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8f0587bbb50e848a0205d03bf87083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicSlider: {fileID: 893773630}
+  _sfxSlider: {fileID: 1463015763}
 --- !u!1 &1238605791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,7 +2722,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2971,11 +3015,11 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 701780293}
+      - m_Target: {fileID: 1078187860}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: SFXVolume
         m_Mode: 1
@@ -3394,7 +3438,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3575,7 +3619,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 701780293}
+      - m_Target: {fileID: 1078187860}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
@@ -4096,9 +4140,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1533951880}
-        m_TargetAssemblyTypeName: SnakeMovement, Assembly-CSharp
-        m_MethodName: ContinueFromLastCheckpoint
+      - m_Target: {fileID: 333550468}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: ShowRewardedAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4620,3 +4664,4 @@ SceneRoots:
   - {fileID: 1474750012}
   - {fileID: 389174491}
   - {fileID: 1078187859}
+  - {fileID: 333550469}

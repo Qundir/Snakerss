@@ -191,7 +191,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 173175728}
+      - m_Target: {fileID: 793808792}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: MusicVolume
         m_Mode: 1
@@ -657,7 +657,6 @@ GameObject:
   - component: {fileID: 173175727}
   - component: {fileID: 173175730}
   - component: {fileID: 173175729}
-  - component: {fileID: 173175728}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -688,20 +687,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 1734}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &173175728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173175726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8f0587bbb50e848a0205d03bf87083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _musicSlider: {fileID: 9804403}
-  _sfxSlider: {fileID: 1593209232}
 --- !u!114 &173175729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1803,6 +1788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 793808790}
   - component: {fileID: 793808791}
+  - component: {fileID: 793808792}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -1853,6 +1839,20 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1ba0f8665aab0f84cb4b38b3ee318d14, type: 3}
   musicSource: {fileID: 1817504686}
   sfxSource: {fileID: 209292936}
+--- !u!114 &793808792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793808789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8f0587bbb50e848a0205d03bf87083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicSlider: {fileID: 9804403}
+  _sfxSlider: {fileID: 1593209232}
 --- !u!1 &987953461
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,7 +3130,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 173175728}
+      - m_Target: {fileID: 793808792}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
@@ -3366,6 +3366,50 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1491001670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491001672}
+  - component: {fileID: 1491001671}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1491001671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491001670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890f447f4a88f3a4a83e6d0047fedffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1491001672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491001670}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1568514070
 GameObject:
   m_ObjectHideFlags: 0
@@ -3578,7 +3622,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 173175728}
+      - m_Target: {fileID: 793808792}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ToggleSFX
         m_Mode: 1
@@ -3696,7 +3740,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 173175728}
+      - m_Target: {fileID: 793808792}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: SFXVolume
         m_Mode: 1
@@ -4240,9 +4284,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 307071161}
-        m_TargetAssemblyTypeName: HardSnakeMovement, Assembly-CSharp
-        m_MethodName: ContinueFromLastCheckpoint
+      - m_Target: {fileID: 1491001671}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: ShowRewardedAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4419,3 +4463,4 @@ SceneRoots:
   - {fileID: 703982763}
   - {fileID: 1240309658}
   - {fileID: 793808790}
+  - {fileID: 1491001672}

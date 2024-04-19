@@ -963,7 +963,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 953100901}
+      - m_Target: {fileID: 1110973020}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ToggleSFX
         m_Mode: 1
@@ -1468,11 +1468,11 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 953100901}
+      - m_Target: {fileID: 1110973020}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: SFXVolume
         m_Mode: 1
@@ -1585,52 +1585,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928920723}
   m_CullTransparentMesh: 1
---- !u!1 &953100900
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 953100902}
-  - component: {fileID: 953100901}
-  m_Layer: 0
-  m_Name: UIController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &953100901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953100900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8f0587bbb50e848a0205d03bf87083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _musicSlider: {fileID: 1563223872}
-  _sfxSlider: {fileID: 899296878}
---- !u!4 &953100902
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953100900}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.145207, y: 2.9185946, z: 4479.8003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1042555920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,6 +1667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1110973018}
   - component: {fileID: 1110973019}
+  - component: {fileID: 1110973020}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -1763,6 +1718,20 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1ba0f8665aab0f84cb4b38b3ee318d14, type: 3}
   musicSource: {fileID: 1992628813}
   sfxSource: {fileID: 1494560813}
+--- !u!114 &1110973020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110973017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8f0587bbb50e848a0205d03bf87083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicSlider: {fileID: 1563223872}
+  _sfxSlider: {fileID: 899296878}
 --- !u!1 &1312870811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,7 +1814,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 953100901}
+      - m_Target: {fileID: 1110973020}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
@@ -2597,11 +2566,11 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 953100901}
+      - m_Target: {fileID: 1110973020}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: MusicVolume
         m_Mode: 1
@@ -3383,4 +3352,3 @@ SceneRoots:
   - {fileID: 1688120448}
   - {fileID: 2017317332}
   - {fileID: 1110973018}
-  - {fileID: 953100902}

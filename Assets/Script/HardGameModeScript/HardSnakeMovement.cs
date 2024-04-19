@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // UI elementlerine eriþmek için gerekli kütüphane
+using UnityEngine.UI; // UI elementlerine eriï¿½mek iï¿½in gerekli kï¿½tï¿½phane
 
 public class HardSnakeMovement : MonoBehaviour
 {
-    private float initialTimeScale; // Baþlangýçta kaydedilecek zaman ölçeði deðeri
+    private float initialTimeScale; // Baï¿½langï¿½ï¿½ta kaydedilecek zaman ï¿½lï¿½eï¿½i deï¿½eri
     private Vector2 _direction = Vector2.zero;
     public List<Transform> _segments;
     public Transform segmentPrefab;
     public Button RestartGame; // StartGame butonuna referans
     public Text scoreText, highScoreText; // Text elementine referans
     public GameObject BigFood;
-    public int score = 0; // Baþlangýçta score deðeri
-    private int highScore = 0; // Baþlangýçta en yüksek skor sýfýr olacak
+    public int score = 0; // Baï¿½langï¿½ï¿½ta score deï¿½eri
+    private int highScore = 0; // Baï¿½langï¿½ï¿½ta en yï¿½ksek skor sï¿½fï¿½r olacak
     private HardFoodRandomizer hardFoodRandomizer;
     public HardGameModeScript hardGameModeScript;
-    private List<Vector3> checkpoints = new List<Vector3>(); // Oyuncunun kayýt noktalarýný tutmak için bir liste
+    private List<Vector3> checkpoints = new List<Vector3>(); // Oyuncunun kayï¿½t noktalarï¿½nï¿½ tutmak iï¿½in bir liste
     public GameObject revivePanel;
     float ContinueSpeed;
     public int initialSize;
@@ -28,9 +28,9 @@ public class HardSnakeMovement : MonoBehaviour
         AudioManager.Instance.PlaySFX("GameStartSound");
         UpdateHighScoreText();
         BigFood.SetActive(false);
-        // foodRandomizer deðiþkenini baþlat
-        hardFoodRandomizer = FindObjectOfType<HardFoodRandomizer>(); // FoodRandomizer scriptini sahnedeki nesneler arasýnda bul
-        initialTimeScale = Time.timeScale; // Baþlangýç zaman ölçeði deðerini kaydet
+        // foodRandomizer deï¿½iï¿½kenini baï¿½lat
+        hardFoodRandomizer = FindObjectOfType<HardFoodRandomizer>(); // FoodRandomizer scriptini sahnedeki nesneler arasï¿½nda bul
+        initialTimeScale = Time.timeScale; // Baï¿½langï¿½ï¿½ zaman ï¿½lï¿½eï¿½i deï¿½erini kaydet
     }
 
     public void GameStarter()
@@ -40,7 +40,7 @@ public class HardSnakeMovement : MonoBehaviour
     }
     public void SnakeGoRight()
     {
-        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        // Eï¿½er mevcut yï¿½n sol deï¿½ilse, saï¿½a hareket etmeye izin ver
         if (_direction != Vector2.left)
         {
             _direction = Vector2.right;
@@ -49,7 +49,7 @@ public class HardSnakeMovement : MonoBehaviour
 
     public void SnakeGoLeft()
     {
-        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        // Eï¿½er mevcut yï¿½n sol deï¿½ilse, saï¿½a hareket etmeye izin ver
         if (_direction != Vector2.right)
         {
             _direction = Vector2.left;
@@ -58,7 +58,7 @@ public class HardSnakeMovement : MonoBehaviour
 
     public void SnakeGoUp()
     {
-        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        // Eï¿½er mevcut yï¿½n sol deï¿½ilse, saï¿½a hareket etmeye izin ver
         if (_direction != Vector2.down)
         {
             _direction = Vector2.up;
@@ -67,7 +67,7 @@ public class HardSnakeMovement : MonoBehaviour
 
     public void SnakeGoDown()
     {
-        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        // Eï¿½er mevcut yï¿½n sol deï¿½ilse, saï¿½a hareket etmeye izin ver
         if (_direction != Vector2.up)
         {
             _direction = Vector2.down;
@@ -82,7 +82,7 @@ public class HardSnakeMovement : MonoBehaviour
         }
         Vector3 newPosition = transform.position + new Vector3(_direction.x * 0.5f, _direction.y * 0.5f, 0f);
 
-        // Her bileþeni 0.5 birimden tam sayýya yuvarlayarak yýlanýn her adýmda 0.5 birim hareket etmesini saðlar
+        // Her bileï¿½eni 0.5 birimden tam sayï¿½ya yuvarlayarak yï¿½lanï¿½n her adï¿½mda 0.5 birim hareket etmesini saï¿½lar
         float newX = Mathf.Round(newPosition.x * 2) / 2;
         float newY = Mathf.Round(newPosition.y * 2) / 2;
 
@@ -110,15 +110,15 @@ public class HardSnakeMovement : MonoBehaviour
         BigFood.SetActive(false);
         hardFoodRandomizer.SpawnCount = 0;
         hardFoodRandomizer.FoodSpawner();
-        _direction = Vector2.zero; //yandýktan sonra head objesinin sabit kalmasý için
+        _direction = Vector2.zero; //yandï¿½ktan sonra head objesinin sabit kalmasï¿½ iï¿½in
         revivePanel.SetActive(false);
         checkpoints.Clear();
         score = 0;
-        UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
+        UpdateScoreText(); // Score deï¿½erini gï¿½ncelleyerek ekrana yazdï¿½r
         Time.timeScale = 1f;
 
     }
-    public void ContinueFromLastCheckpoint()
+    public void HardContinueFromLastCheckpoint()
     {
         initialSize = _segments.Count;
         for (int i = 1; i < _segments.Count; i++)
@@ -134,12 +134,13 @@ public class HardSnakeMovement : MonoBehaviour
         }
         this.transform.position = Vector3.zero;
         revivePanel.SetActive(false);
+        _direction = Vector2.up;
 
     }
 
     private void UpdateScoreText()
     {
-        scoreText.text = "Score: " + score.ToString(); // Text elementini güncelle
+        scoreText.text = "Score: " + score.ToString(); // Text elementini gï¿½ncelle
         if (score > highScore)
         {
             highScore = score;
@@ -154,14 +155,14 @@ public class HardSnakeMovement : MonoBehaviour
         {
             AudioManager.Instance.PlaySFX("FoodEatSound");
             Grow();
-            score++; // Score deðerini arttýr
-            UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdý
+            score++; // Score deï¿½erini arttï¿½r
+            UpdateScoreText(); // Score deï¿½erini gï¿½ncelleyerek ekrana yazdï¿½
         }
         else if (other.tag == "Obstacle")
         {
             AudioManager.Instance.PlaySFX("WallCrushSound");
             Vibration.Vibrate(100);
-            //UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
+            //UpdateScoreText(); // Score deï¿½erini gï¿½ncelleyerek ekrana yazdï¿½r
             revivePanel.SetActive(true);
             Time.timeScale = 0;
 
@@ -169,14 +170,14 @@ public class HardSnakeMovement : MonoBehaviour
         else if (other.tag == "BigFood")
         {
             AudioManager.Instance.PlaySFX("BigFoodEatSound");
-            // BigFood tetiklendiðinde 4 kez Grow fonksiyonunu çaðýr ve skora +4 ekle
+            // BigFood tetiklendiï¿½inde 4 kez Grow fonksiyonunu ï¿½aï¿½ï¿½r ve skora +4 ekle
             for (int i = 0; i < 4; i++)
             {
                 Grow();
                 score++;
                 UpdateScoreText();
             }
-            BigFood.SetActive(false);//yem yendikten sonra sabit kalmamasý için
+            BigFood.SetActive(false);//yem yendikten sonra sabit kalmamasï¿½ iï¿½in
         }
     }
 

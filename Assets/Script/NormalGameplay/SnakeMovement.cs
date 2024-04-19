@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // UI elementlerine eriþmek için gerekli kütüphane
+using UnityEngine.UI; // UI elementlerine eriï¿½mek iï¿½in gerekli kï¿½tï¿½phane
 
 public class SnakeMovement : MonoBehaviour
 {
@@ -25,9 +25,9 @@ public class SnakeMovement : MonoBehaviour
         UpdateHighScoreText();
         AudioManager.Instance.PlaySFX("GameStartSound");
         BigFood.SetActive(false);
-        // foodRandomizer deðiþkenini baþlat
-        foodRandomizer = FindObjectOfType<FoodRandomizer>(); // FoodRandomizer scriptini sahnedeki nesneler arasýnda bul
-        initialTimeScale = Time.timeScale; // Baþlangýç zaman ölçeði deðerini kaydet
+        // foodRandomizer deï¿½iï¿½kenini baï¿½lat
+        foodRandomizer = FindObjectOfType<FoodRandomizer>(); // FoodRandomizer scriptini sahnedeki nesneler arasï¿½nda bul
+        initialTimeScale = Time.timeScale; // Baï¿½langï¿½ï¿½ zaman ï¿½lï¿½eï¿½i deï¿½erini kaydet
     }
 
     public void GameStarter()
@@ -39,7 +39,7 @@ public class SnakeMovement : MonoBehaviour
 
     public void SnakeGoRight()
     {
-        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        // Eï¿½er mevcut yï¿½n sol deï¿½ilse, saï¿½a hareket etmeye izin ver
         if (_direction != Vector2.left)
         {
             _direction = Vector2.right;
@@ -48,7 +48,7 @@ public class SnakeMovement : MonoBehaviour
 
     public void SnakeGoLeft()
     {
-        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        // Eï¿½er mevcut yï¿½n sol deï¿½ilse, saï¿½a hareket etmeye izin ver
         if (_direction != Vector2.right)
         {
             _direction = Vector2.left;
@@ -57,7 +57,7 @@ public class SnakeMovement : MonoBehaviour
 
     public void SnakeGoUp()
     {
-        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        // Eï¿½er mevcut yï¿½n sol deï¿½ilse, saï¿½a hareket etmeye izin ver
         if (_direction != Vector2.down)
         {
             _direction = Vector2.up;
@@ -66,7 +66,7 @@ public class SnakeMovement : MonoBehaviour
 
     public void SnakeGoDown()
     {
-        // Eðer mevcut yön sol deðilse, saða hareket etmeye izin ver
+        // Eï¿½er mevcut yï¿½n sol deï¿½ilse, saï¿½a hareket etmeye izin ver
         if (_direction != Vector2.up)
         {
             _direction = Vector2.down;
@@ -100,17 +100,17 @@ public class SnakeMovement : MonoBehaviour
         {
             Destroy(_segments[i].gameObject);
         }
-        Time.timeScale = initialTimeScale; // Baþlangýç hýzýna geri dön
+        Time.timeScale = initialTimeScale; // Baï¿½langï¿½ï¿½ hï¿½zï¿½na geri dï¿½n
         _segments.Clear();
         _segments.Add(this.transform);
         this.transform.position = Vector3.zero;
         BigFood.SetActive(false);
         foodRandomizer.SpawnCount = 0;
         foodRandomizer.FoodSpawner();
-        _direction = Vector2.zero; //yandýktan sonra head objesinin sabit kalmasý için
+        _direction = Vector2.zero; //yandï¿½ktan sonra head objesinin sabit kalmasï¿½ iï¿½in
         revivePanel.SetActive(false);
         score = 0;
-        UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdý
+        UpdateScoreText(); // Score deï¿½erini gï¿½ncelleyerek ekrana yazdï¿½
     }
     public void ContinueFromLastCheckpoint()
     {
@@ -119,7 +119,7 @@ public class SnakeMovement : MonoBehaviour
         {
             Destroy(_segments[i].gameObject);
         }
-        Time.timeScale = initialTimeScale; // Baþlangýç hýzýna geri dön
+        Time.timeScale = initialTimeScale; // Baï¿½langï¿½ï¿½ hï¿½zï¿½na geri dï¿½n
         _segments.Clear();
         _segments.Add(this.transform);
         for (int i = 1; i < this.initialSize; i++)
@@ -128,13 +128,13 @@ public class SnakeMovement : MonoBehaviour
         }
         this.transform.position = new Vector3(0f, 0f, 0f);
         revivePanel.SetActive(false);
+        _direction = Vector2.up;
 
     }
 
-
     private void UpdateScoreText()
     {
-        scoreText.text = "Score: " + score.ToString(); // Text elementini güncelle
+        scoreText.text = "Score: " + score.ToString(); // Text elementini gï¿½ncelle
         if (score > highScore)
         {
             highScore = score;
@@ -149,15 +149,15 @@ public class SnakeMovement : MonoBehaviour
         {
             AudioManager.Instance.PlaySFX("FoodEatSound");
             Grow();
-            score++; // Score deðerini arttýr
-            UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdý
+            score++; // Score deï¿½erini arttï¿½r
+            UpdateScoreText(); // Score deï¿½erini gï¿½ncelleyerek ekrana yazdï¿½
         }
         else if (other.tag == "Obstacle")
         {
             AudioManager.Instance.PlaySFX("WallCrushSound");
             Vibration.Vibrate(100);
-            //UpdateScoreText(); // Score deðerini güncelleyerek ekrana yazdýr
-            Debug.Log("yandý");
+            //UpdateScoreText(); // Score deï¿½erini gï¿½ncelleyerek ekrana yazdï¿½r
+            Debug.Log("yandï¿½");
             Time.timeScale = 0f;
             revivePanel.SetActive(true);
 
@@ -165,14 +165,14 @@ public class SnakeMovement : MonoBehaviour
         else if (other.tag == "BigFood")
         {
             AudioManager.Instance.PlaySFX("BigFoodEatSound");
-            // BigFood tetiklendiðinde 4 kez Grow fonksiyonunu çaðýr ve skora +4 ekle
+            // BigFood tetiklendiï¿½inde 4 kez Grow fonksiyonunu ï¿½aï¿½ï¿½r ve skora +4 ekle
             for (int i = 0; i < 4; i++)
             {
                 Grow();
                 score++;
                 UpdateScoreText();
             }
-            BigFood.SetActive(false);//yem yendikten sonra sabit kalmamasý için
+            BigFood.SetActive(false);//yem yendikten sonra sabit kalmamasï¿½ iï¿½in
         }
     }
 
