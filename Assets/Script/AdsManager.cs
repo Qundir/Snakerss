@@ -27,7 +27,7 @@ public class AdsManager : MonoBehaviour
     }
     #region rewarded Ad
     private RewardedAd _rewardedAd;
-    private string _adRewardUnitId = "ca-app-pub-1370491335086999/6588892175";
+    private string _adRewardUnitId = "ca-app-pub-1428627333476346/1334465991";
     public void LoadRewardedAd()
   {
       // Clean up the old ad before loading a new one.
